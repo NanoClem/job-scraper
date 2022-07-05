@@ -1,2 +1,2 @@
-# job-scraper
-A web-scraping project combined with data analysis and fullstack dev.
+# scrap-a-job
+Find a job or learn about the employement market with data scraping.
