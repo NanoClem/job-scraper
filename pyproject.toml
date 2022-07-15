@@ -9,6 +9,7 @@ python = "^3.10"
 pydantic = "^1.9.1"
 requests = "^2.28.1"
 pyaml = "^21.10.1"
+Scrapy = "^2.6.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"

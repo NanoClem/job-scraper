@@ -1,0 +1,23 @@
+---
+base_url: https://jobs.academicwork.ch/advertsearch/
+
+headers:
+  user-agent:  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+  content-type: application/json
+  requestverificationtoken: "CfDJ8I3gK0kh2dFMhR7yPv-EDcRVLnsryvZI3FPBqE-ni9a_eOpMwwm2QUe_80ADiXXsTMpQcPK0Fn9kIKgVka3yLlOmC32PJ-ZI4f1A5hquJYn7ruy3o4oFUHX6qgP7LQL_YIfZIg0t7NQpJW95xuYnBolI_UZGC9fLuTQS7bMFSWAnFacIVCG-uAEZRuY0uX0q2w"
+
+payload:
+  SearchQueryItems:
+    - type: Categories
+      value: IT
+      id: "20008319"
+    - type: Locations
+      value: Genève
+      id: "20010605"
+    - type: Locations
+      value: Lausanne
+      parent: Vaud
+      Id: "20010749"
+  StartIndex: 0     # pagination
+
+raw_cookie: "OptanonAlertBoxClosed=2022-07-05T23:50:05.399Z; _gcl_au=1.1.2071344892.1657065005; _ga=GA1.2.1193442835.1657065006; _hjid=18c34d47-16ac-4768-8553-748a3bc683e3; _hjSessionUser_682843=eyJpZCI6IjdiNzliNjg2LThiNGQtNTc2Ny05ZGEwLTc3YjE3Njc0MjBhZCIsImNyZWF0ZWQiOjE2NTcwNjUwMDYxNjEsImV4aXN0aW5nIjp0cnVlfQ==; _ccid=1633099688294q1z0krvy2; _gid=GA1.2.1856836528.1657875471; .AspNet.AWSharedCookie=CfDJ8I3gK0kh2dFMhR7yPv-EDcQlFH7_9l64hUlqXEZ77AWj2Y1GvPs5vSaewFA8GaHyTyh_Q3vYZTL1yzKRKm3nWz5-9wP40a2fIV1VymroVWgVSgEG1YlPcJjyb0DyDqtk2grlPmmK7GIG-TnfT8BO3DVTfD1LYtxogpE2fef0koqEELqLhI2sVLL5c28qzAnhAZLHq-hDcAsuZF43Jfk2rzNyHHrvLmwlCMeUGrpRF8ZHovbmbBJMhNdJQKPOj1KQSm2VTcWhA_U8Us3Y4sxsO0dsBXtBfunnXUxgab_9Nn3l2A_moljqA7LH_3ThCfXfBBEoXcR3f7b_4a8EjlF7Vebt-P3FWVbCyIBEoGBVGliqHNoCDaMH1OaeXPqzhAN-hzD4pvFfWLAz5rKiQtpNnTcsRGOYxJsnh2QoqLnVnkGSb403l3WFe8SMV1F-DwbcJvTJPUFym0tiuF_qWqAMHslT0IG57DBlmXoo69rAvlXoLjiLqKlqInCY_OYh0wmb53i7SpcT9ahT99bzVPNkc_TQOK3BUTyOFitAkUOw38Wa07Vux-Wxzr8tEGchuMwfpxd7Ms6ehVupgsTIAS7DBSN9u4g9a91gpY6sj2MMzvv14VTo-pnTmlB_sHLQU-5eoI-tBQMU1dzroWU8CFt2rrkbCo4_Iu0xPgp4V2HPHAYrRY-js8-DkwP_U-vO3WuxVALFglQafWTU5aI9exYzW-tAUTDUlf8AgBUfP3hlt2TSVywOiXw8pgKibrDG1qASQIP5RBua9wAsUPk1fUkaIqh3wLga-Xjb0BR7kx-P57em6FRVcfO-Vmf1CDr0dTHJMVcd9d2wTLWw_9MI0I4aph3gLLRN5a7WrPgXZ8eGNivaVc7tCqHzN8bWZo53TJpogg3aNMPBV8onPUTLT-gHM7iUMReU3xn-X79Vt7lpl2m-Jq19fuHty-XVzuPROtH7LOG0vW1PyxXIOZszT1Tgh26x87O8zSIYma9o1z71IbeB0Xd6CG6cyBPYL5_f9kmP0i1fiM5dmRHBs_DvAITKu-i0AhCVO0cHPM5JSzD1b13S1GJlvHyJsh9_djZMrZAIWo3EW3060m_4veuX92_TAmrT1SzOFJcLxoUyJFnMdDOsXPRit4yHSKo7BojMypJRndLy8INlp7C-tpvbiw0iBH8dka_GqOwM4CMfu8SCerfAsyVIF2lA-idaTUiosDd4GSsqeeGujomfz2kR8KVMkuuqCnMfU97M7yRR2JkDnSuAHVSFb_-xBEpILIFKInsOdBs-VhHBa79xkqi9KM3ZuQjyatLtGltha0YOUJJ5Eq9jzZ8pfnbEU5RIYhuIa_kDYlr-ZZA4OdTsBkGydOXlq1bDzrOSs7bm5eUe2fCyrmc2; ARRAffinity=3cdc1ae340661edcdf0e2f3eae98b21078cd0aadd78242b559d981fc1a2de33b; ARRAffinitySameSite=3cdc1ae340661edcdf0e2f3eae98b21078cd0aadd78242b559d981fc1a2de33b; .AspNetCore.Antiforgery.-KRn_gW7bR0=CfDJ8I3gK0kh2dFMhR7yPv-EDcRzxgGmycvrl7RXYovBf0-dlQu8-MknzZHsEhGVgwGpyP4Fr70m6M-SiCN97O2guG_W4KMAaVQw4m4jwdrjbAPhkeYIQH5G_IzCFxXBK-PGxacgk6UcUWnAYuJ0qTFl2S0; _dc_gtm_UA-3014750-31=1; _dc_gtm_UA-3014750-46=1; _hjSession_682843=eyJpZCI6IjA0MzgzM2YzLTJlNzctNDU5Zi04Y2Y5LTBiMDM2NDFlMzhkMiIsImNyZWF0ZWQiOjE2NTc4OTIzMTcwMTAsImluU2FtcGxlIjp0cnVlfQ==; _hjAbsoluteSessionInProgress=1; OptanonConsent=consentId=b7cec8f1-e58f-485f-9106-39450d01b175&datestamp=Fri+Jul+15+2022+15%3A38%3A44+GMT%2B0200+(heure+d%E2%80%99%C3%A9t%C3%A9+d%E2%80%99Europe+centrale)&version=6.25.0&interactionCount=1&isGpcEnabled=0&isIABGlobal=false&hosts=&landingPath=NotLandingPage&groups=C0001%3A1%2CC0003%3A1%2CC0002%3A1%2CC0004%3A1&geolocation=%3B&AwaitingReconsent=false; _gat_UA-3014750-40=1; _hjIncludedInSessionSample=0"
