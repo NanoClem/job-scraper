@@ -12,6 +12,8 @@ BOT_NAME = 'job_scraping'
 SPIDER_MODULES = ['job_scraping.spiders']
 NEWSPIDER_MODULE = 'job_scraping.spiders'
 
+FEED_EXPORT_ENCODING = 'utf-8'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'job_scraping (+http://www.yourdomain.com)'
 
