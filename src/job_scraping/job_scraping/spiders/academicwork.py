@@ -1,11 +1,12 @@
 import json
-from http.cookies import SimpleCookie
-from typing import Iterator
+from typing import Iterator, Optional
 
 import scrapy
 from scrapy.http import Request, Response
 
+import job_scraping.utils as utils
 from job_scraping.configs.config import Config
+from job_scraping.items import AWItem
 
 
 class AcademicworkSpider(scrapy.Spider):
@@ -13,33 +14,36 @@ class AcademicworkSpider(scrapy.Spider):
     allowed_domains: dict[str] = ['jobs.academicwork.ch']
     start_urls: dict[str] = []
 
-    cookie: dict = {}
-    config: Config = None
+    custom_settings: Optional[dict] = {
+        'ITEM_PIPELINES': {'job_scraping.pipelines.AWValidationPipeline': 100}
+    }
 
-    def parse_cookie(self) -> None:
-        cookie_parser = SimpleCookie()
-        cookie_parser.load(self.config.raw_cookie)
-        self.cookie = {k: v.value for k, v in cookie_parser.items()}
+    cookie: dict = {}
+    curr_body: dict = {}
+    config: Config = None
 
     def make_request(self) -> Request:
         return Request(
             url=self.config.base_url,
             method='POST',
             headers=self.config.headers,
-            body=json.dumps(self.config.payload),
+            body=json.dumps(self.curr_body),
             cookies=self.cookie,
             callback=self.parse,
         )
 
     def start_requests(self) -> Iterator[Request]:
         self.config = Config.load_configs(self.name)
-        self.parse_cookie()
+        self.cookie = utils.parse_cookie(self.config.raw_cookie)
+        self.curr_body = self.config.payload.copy()
         yield self.make_request()
 
     def parse(self, response: Response):
         data = json.loads(response.body.decode('utf-8'))
-        yield from data['Adverts']
+        for job_add in data['Adverts']:
+            item = AWItem.construct(**job_add)
+            yield item.dict()
 
-        if self.config.payload['StartIndex'] < data['TotalIndexes'] - 1:
-            self.config.payload['StartIndex'] += 1
+        if self.curr_body['StartIndex'] < data['TotalIndexes'] - 1:
+            self.curr_body['StartIndex'] += 1
             yield self.make_request()
