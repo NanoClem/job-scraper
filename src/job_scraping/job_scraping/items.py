@@ -1,12 +1,26 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
+from typing import Any, Optional
 
-import scrapy
+from pydantic import BaseModel
 
 
-class JobScrapingItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class AWItem(BaseModel):
+    Id: int
+    JobAdvertEntityId: int
+    JobRef: int
+    JobTitle: str
+    Slug: str
+    LeadIn: str
+    Location: str
+    JobCity: str
+    WorkExtent: str
+    OrderType: str
+    Category: str
+    StartingDate: Any
+    JobTag: Optional[str]
+    Requirements: Any
+    CreatedDate: str
+    ExtentOfWork: Any
+    PublishDate: str
+    Saved: bool
+    Applied: bool
+    NewLogoUrl: str
