@@ -15,7 +15,10 @@ class AcademicworkSpider(scrapy.Spider):
     start_urls: dict[str] = []
 
     custom_settings: Optional[dict] = {
-        'ITEM_PIPELINES': {'job_scraping.pipelines.AWValidationPipeline': 100}
+        'ITEM_PIPELINES': {
+            'job_scraping.pipelines.AWValidationPipeline': 100,
+            'job_scraping.pipelines.JsonLoadingPipeline': 200,
+        }
     }
 
     cookie: dict = {}
