@@ -21,7 +21,7 @@ class AcademicworkSpider(scrapy.Spider):
         }
     }
 
-    cookie: dict = {}
+    curr_cookie: dict = {}
     curr_body: dict = {}
     config: Config = None
 
@@ -31,13 +31,13 @@ class AcademicworkSpider(scrapy.Spider):
             method='POST',
             headers=self.config.headers,
             body=json.dumps(self.curr_body),
-            cookies=self.cookie,
+            cookies=self.curr_cookie,
             callback=self.parse,
         )
 
     def start_requests(self) -> Iterator[Request]:
         self.config = Config.load_configs(self.name)
-        self.cookie = utils.parse_cookie(self.config.raw_cookie)
+        self.curr_cookie = utils.parse_cookie(self.config.raw_cookie)
         self.curr_body = self.config.payload.copy()
         yield self.make_request()
 
