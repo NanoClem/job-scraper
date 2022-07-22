@@ -17,6 +17,10 @@ def get_src_path() -> Path:
     return (Path(__file__).parent.parent).resolve()
 
 
+def to_snake_case(camel_str: str) -> str:
+    return ''.join(['_' + c.lower() if c.isupper() else c for c in camel_str]).lstrip('_')
+
+
 def logged(func: Callable) -> Callable:
     @functools.wraps(func)
     def wrapper(*args, **kwargs):

@@ -1,4 +1,3 @@
-import json
 from collections import defaultdict
 
 import scrapy
@@ -8,8 +7,7 @@ import job_scraping.utils as utils
 from job_scraping.items import AWItem
 
 
-class AWValidationPipeline:
-    
+class ValidationPipeline:
     @utils.logged
     def process_item(self, item, spider: scrapy.Spider):
         try:
@@ -22,18 +20,7 @@ class AWValidationPipeline:
         return item
 
 
-class JsonLoadingPipeline:
-    
-    def open_spider(self, spider: scrapy.Spider) -> None:
-        load_path = utils.get_src_path() / 'data' / spider.name
-        load_path.mkdir(parents=True, exist_ok=True)
-        self.file = open(load_path / 'items.jsonlines', 'w', encoding='utf-8')
-
-    def close_spider(self, spider: scrapy.Spider) -> None:
-        self.file.close()
-
-    @utils.logged
+class JobUrlPipeline:
     def process_item(self, item, spider: scrapy.Spider):
-        line = json.dumps(item, ensure_ascii=False) + "\n"  # ensure utf-8 encoding when writing in file
-        self.file.write(line)
+        item['JobUrl'] = f'https://{spider.allowed_domains[0]}/job-list/{item["Slug"]}/{item["Id"]}'
         return item
