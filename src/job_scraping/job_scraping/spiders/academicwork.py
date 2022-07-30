@@ -6,7 +6,7 @@ from scrapy.http import Request, Response
 
 import job_scraping.utils as utils
 from job_scraping.configs.config import Config
-from job_scraping.items import AWItem
+from job_scraping.items import JobItem
 
 
 class AcademicworkSpider(scrapy.Spider):
@@ -16,18 +16,15 @@ class AcademicworkSpider(scrapy.Spider):
 
     custom_settings: Optional[dict] = {
         'ITEM_PIPELINES': {
-            'job_scraping.pipelines.aw_pipelines.ValidationPipeline': 100,
-            'job_scraping.pipelines.aw_pipelines.JobUrlPipeline': 200,
-            'job_scraping.pipelines.pipelines.SnakeCasePipeline': 300,
-            'job_scraping.pipelines.pipelines.JsonLoadingPipeline': 400,
+            'job_scraping.pipelines.ValidationPipeline': 100,
+            'job_scraping.pipelines.SqlLoadingPipeline': 200,
+            # 'job_scraping.pipelines.JsonLoadingPipeline': 400,
         }
     }
 
     curr_cookie: dict = {}
     curr_body: dict = {}
     config: Config = None
-    fields_filter: list[str] = ['JobCity','Requirements', 'ExtentOfWork', 'PublishDate', 'JobRef', 
-                                'Saved', 'Applied', 'NewLogoUrl', 'JobAdvertEntityId', 'JobTag']
 
     def make_request(self) -> Request:
         return Request(
@@ -46,9 +43,22 @@ class AcademicworkSpider(scrapy.Spider):
         yield self.make_request()
 
     def parse(self, response: Response):
-        data = json.loads(response.body.decode('utf-8'))
-        for job_add in data['Adverts']:
-            item = AWItem.construct(**{k: v for k, v in job_add.items() if k not in self.fields_filter})
+        data: dict = json.loads(response.body.decode('utf-8'))
+
+        for job in data.get('Adverts', list()):
+            item = JobItem.construct(
+                job_id=str(job.get('Id')),
+                title=job.get('JobTitle'),
+                slug=job.get('Slug'),
+                url=f'https://{self.allowed_domains[0]}/job-list/{job.get("Slug")}/{job.get("Id")}',
+                source_website=self.name,
+                employment_type=job.get('OrderType'),
+                job_category=job.get('Category'),
+                job_extent=job.get('WorkExtent'),
+                description=job.get('LeadIn'),
+                location=job.get('Location'),
+                publication_date=job.get('CreatedDate'),
+            )
             yield item.dict()
 
         if self.curr_body['StartIndex'] < data['TotalIndexes'] - 1:
