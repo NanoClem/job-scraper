@@ -1,27 +1,18 @@
-from typing import Any, Optional
-
 from pydantic import BaseModel
 
 
-class AWItem(BaseModel):
-    Id: int
-    # JobAdvertEntityId: int
-    # JobRef: int
-    JobUrl: str
-    JobTitle: str
-    Slug: str
-    LeadIn: str
-    Location: str
-    # JobCity: str
-    WorkExtent: str
-    OrderType: str
-    Category: str
-    StartingDate: Any
-    # Requirements: Any
-    CreatedDate: str
-    # ExtentOfWork: Any
-    # PublishDate: str
-    JobUrl: str = ''
-    # Saved: bool
-    # Applied: bool
-    # NewLogoUrl: str
+class JobItem(BaseModel):
+    
+    job_id: str
+    title: str
+    slug: str
+    url: str
+    source_website: str
+    employment_type: str
+    job_category: str
+    job_extent: str
+    description: str
+    location: str
+    publication_date: str
+    employment_rate: int = None
+    company: str = None
