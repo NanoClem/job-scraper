@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 from typing import Callable
 from http.cookies import SimpleCookie
+from datetime import datetime
 
 
 def parse_cookie(raw_cookie: str) -> dict[str, str]:
@@ -17,8 +18,10 @@ def get_src_path() -> Path:
     return (Path(__file__).parent.parent).resolve()
 
 
-def to_snake_case(camel_str: str) -> str:
-    return ''.join(['_' + c.lower() if c.isupper() else c for c in camel_str]).lstrip('_')
+def to_date_format(str_date: str, format: str, new_format: str):
+    """Convert a date string to another string format"""
+    date_obj = datetime.strptime(str_date, format)
+    return date_obj.astimezone().strftime(new_format)
 
 
 def logged(func: Callable) -> Callable:
